@@ -10,7 +10,7 @@ initial_wait_seconds= 1800 # 7200  # This is equivalent to 2 hours
 max_wait_seconds=120 # 900  # This is equivalent to 15 minutes
 
 # Threshold for load average 
-threshold=0.03
+threshold=5
 
 # Monitoring period in minutes (15 minutes)
 monitoring_period=15
