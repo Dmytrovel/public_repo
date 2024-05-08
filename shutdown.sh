@@ -4,7 +4,7 @@
 dir_to_monitor="/home/$0"
 
 # How long to initially wait (in seconds)
-initial_wait_seconds= 700 # 7200  # This is equivalent to 2 hours
+initial_wait_seconds= 900 # 7200  # This is equivalent to 2 hours
 
 # How long to wait with no changes (in seconds)
 max_wait_seconds=120 # 900  # This is equivalent to 15 minutes
