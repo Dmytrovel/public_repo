@@ -7,7 +7,7 @@ threshold=5
 monitoring_period=15
 
 # Initial sleep time of 2.5 hours
-sleep 9000s 
+sleep 900s # 9000s 
 
 # This will create an infinite loop
 while true; do
