@@ -4,7 +4,7 @@
 threshold=5
 
 # Logfile path
-log_file="/var/log/directory_changes.log"
+log_file="/var/log/cpu_idel.log"
 
 # Function to log timestamped messages
 log_message() {
