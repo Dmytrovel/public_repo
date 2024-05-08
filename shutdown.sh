@@ -6,11 +6,11 @@ threshold=5
 # Monitoring period in minutes (15 minutes)
 monitoring_period=15
 
+# Initial sleep time of 2.5 hours
+sleep 9000s 
+
 # This will create an infinite loop
 while true; do
-
-    # Initial sleep time of 2.5 hours
-    sleep 9000s 
 
     # Check CPU idle time every minute for the next 15 minutes
     for ((i=0; i<$monitoring_period; i++)); do
