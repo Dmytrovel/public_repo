@@ -16,6 +16,9 @@ log_message() {
 # Convert the threshold percentage to sar format
 sar_threshold=$(echo "100 - $threshold" | bc)
 
+# Initial sleep of 2.5 hours
+sleep 9000s
+
 # Run indefinitely
 while true; do
     # Get the average CPU idle time over the past 30 minutes
