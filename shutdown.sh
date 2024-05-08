@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify the directory you want to monitor
-dir_to_monitor="/home/$0"
+dir_to_monitor="/home/$1"
 
 # Threshold for CPU usage, transformed into idle time (3.1% usage -> 96.9% idle)
 threshold=96.9
