@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Specify the directory path that you want to monitor
+# Вказати шлях до каталогу, який ви хочете відстежувати
 dir_to_monitor="/home/$0"
 
-# Logfile paths
+# Шляхи до файлів журналу
 log_file="/var/log/directory.log"
 changes_log_file="/var/log/directory_changes.log"
 
-# Function to log timestamped messages
+# Функція для реєстрації повідомлень з відміткою часу
 log_message() {
     local timestamp=$(date +"%Y-%m-%d %T")
     echo "[$timestamp] $1" >> "$log_file"
@@ -15,20 +15,17 @@ log_message() {
 
 while true; do
     change_detected=0
-    for ((i=0; i<30; i++)); do
-        if inotifywait -r -e modify,create,delete,move --timeout 3600 $dir_to_monitor; then
-            change_detected=1
-            echo "[$(date +"%Y-%m-%d %T")] Changes detected in $dir_to_monitor" >> "$changes_log_file"
-        fi
 
-        if [ $change_detected -eq 0 ]; then
-            log_message "No file changes detected for last hour, shutting down..."
-            sudo shutdown -h now
-            exit 0
-        fi
+    # Очікування змін протягом однієї години
+    if inotifywait -r -e modify,create,delete,move --timeout 3600 $dir_to_monitor; then
+        change_detected=1
+        echo "[$(date +"%Y-%m-%d %T")] Виявлені зміни в $dir_to_monitor" >> "$changes_log_file"
+    fi
 
-        sleep 3600s
-    done
-
-    log_message "No shutdown triggered, starting a new cycle..."
+    # Якщо зміни не були виявлені протягом однієї години, виконати вимкнення системи
+    if [ $change_detected -eq 0 ]; then
+        log_message "Протягом останньої години змін не виявлено, вимкнення системи..."
+        sudo shutdown -h now
+        exit 0
+    fi
 done
