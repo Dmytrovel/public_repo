@@ -16,18 +16,18 @@ log_message() {
 while true; do
     change_detected=0
     for ((i=0; i<30; i++)); do
-        if inotifywait -r -e modify,create,delete,move --timeout 60 $dir_to_monitor; then
+        if inotifywait -r -e modify,create,delete,move --timeout 3600 $dir_to_monitor; then
             change_detected=1
             echo "[$(date +"%Y-%m-%d %T")] Changes detected in $dir_to_monitor" >> "$changes_log_file"
         fi
 
         if [ $change_detected -eq 0 ]; then
-            log_message "No file changes detected for last minute, shutting down..."
+            log_message "No file changes detected for last hour, shutting down..."
             sudo shutdown -h now
             exit 0
         fi
 
-        sleep 60s
+        sleep 3600s
     done
 
     log_message "No shutdown triggered, starting a new cycle..."
