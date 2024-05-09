@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify the directory path that you want to monitor
-dir_to_monitor="/home"
+dir_to_monitor="/home/$1"
 
 # Logfile paths
 log_file="/var/log/directory.log"
