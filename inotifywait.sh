@@ -13,6 +13,9 @@ log_message() {
     echo "[$timestamp] $1" >> "$log_file"
 }
 
+# Initial sleep of 2.5 hours
+sleep 9000s
+
 while true; do
     change_detected=0
     
