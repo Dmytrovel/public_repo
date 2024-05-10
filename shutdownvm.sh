@@ -1,6 +1,6 @@
 #!/bin/bash
 
-log_file="/path/to/your/logfile"
+log_file="/var/log/shutdown_vm.log"
 
 log_message() {
     local timestamp=$(date +"%Y-%m-%d %T")
