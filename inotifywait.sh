@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify the directory path that you want to monitor
-dir_to_monitor="/home/$1"
+dir_to_monitor="/home/$4"
 
 # Logfile paths
 log_file="/var/log/directory.log"
@@ -13,16 +13,18 @@ log_message() {
     echo "[$timestamp] $1" >> "$log_file"
 }
 
-/bin/bash /sar.sh & 
+/bin/bash /sar.sh $1 $2 $3& 
 
 # Initial sleep of 2.5 hours
-sleep 9000s
+#sleep 9000s
+sleep $1
 
 while true; do
     change_detected=0
     
     # Monitor for changes for one hour
-    if inotifywait -r -e modify,create,delete,move --timeout 3600 $dir_to_monitor; then
+    # if inotifywait -r -e modify,create,delete,move --timeout 3600 $dir_to_monitor; then
+    if inotifywait -r -e modify,create,delete,move --timeout $5 $dir_to_monitor; then
         change_detected=1
         echo "[$(date +"%Y-%m-%d %T")] Changes detected in $dir_to_monitor" >> "$changes_log_file"
     fi
