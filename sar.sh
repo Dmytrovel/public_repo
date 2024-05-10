@@ -24,7 +24,7 @@ sleep $1
 # Run indefinitely
 while true; do
     # Get the average CPU idle time over the past 30 minutes
-    # cpu_avg_idle=$(sar -u 30 1 | grep "Average" | awk '{print $NF}')
+    # cpu_avg_idle=$(sar -u 30 1 | grep "Average" | awk '{print $NF}') # higher max cpu
     cpu_avg_idle=$(sar -u $2 1 | grep "Average" | awk '{print $NF}')
 
     if (( $(echo "$cpu_avg_idle > $sar_threshold" | bc -l) )); then
