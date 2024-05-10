@@ -13,7 +13,7 @@ log_message() {
     echo "[$timestamp] $1" >> "$log_file"
 }
 
-/bin/bash /sar.sh $1 $2 $3& 
+/bin/bash /sar.sh $1 $2 $3 & 
 
 # Initial sleep of 2.5 hours
 #sleep 9000s
